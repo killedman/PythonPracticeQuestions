@@ -1,0 +1,23 @@
+<html>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <head>
+        <title style="background-color:darkblue;color:cornsilk">留言薄</title>
+    </head>
+    <body>
+        <form action="/add" method="POST" style="background-color:dodgerblue">
+            <label>请尽情留言吧</label>
+            <p>姓名<input type="text" name="user_name" /></p>
+            <p>内容<textarea rows="4" cols="30" name="user_content"></textarea></p>
+            <p><input type="submit" name="submit" value="提交"/></p>
+        </form>
+        <div>
+            <p>留言历史信息</p>
+            {% if storage_dict %}
+            {% for timestamp, results in storage_dict.items() %}
+            <p>{{ results[0] }} 留言于（{{ timestamp }}）</p>
+            <p>{{ results[1] }}</p>
+            {% endfor %}
+            {% endif%}
+        </div>
+    </body>
+</html>
