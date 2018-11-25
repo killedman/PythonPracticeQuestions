@@ -24,7 +24,7 @@ def create_excel_file(students):
         sheet["A%d" %i].value = student
         sheet["B%d" %i].value,sheet["C%d" %i].value, sheet["D%d" %i].value, \
             sheet["E%d" %i].value = students.get(student)
-    wb.save('./stduents.xlsx')
+    wb.save('./students.xlsx')
 
 if __name__ == "__main__":
     student_dict = read_txt_file()
