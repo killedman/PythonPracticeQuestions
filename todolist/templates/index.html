@@ -1,0 +1,45 @@
+<html>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <head>
+        <title style="background-color:darkblue;color:cornsilk">todolist</title>
+    </head>
+    <body>
+        <p><a href="{{ url_for('to_login_page')}}">登录</a></p>
+        <p><a href="{{ url_for('index')}}">QuickStart示例--TodoList应用示例</a></p>
+        <p>
+            {% for message in get_flashed_messages() %}
+                {{ message}}
+            {% endfor %}
+        </p>
+        <form action="/search" method="POST">
+            <p>名称: <input type="text" name="keyword" />
+                <input type="submit" name="search" value="search" /></p>
+        </form>
+        <table border="1">
+            <tr><th style="width:10cm;">任务</th><th style="width:5cm">管理</th></tr>
+            {% if results %}
+            {% for result in results %}
+            <tr><td>{{result.name}}</td><td><a href="{{url_for('delete',ID=result.id)}}">删除</a>|
+            <a href="{{ url_for('open_modify_todolist_html',ID=result.id) }}">修改</a></td></tr>
+            {% endfor %}
+            {% endif %}
+        </table>
+        <form action="/open_add_todolist_html" method="">
+            <p><input type="submit" name="submit" value="创建任务" /></p>
+        </form>
+
+        <div>
+            {%- for page in pagination.iter_pages() %}
+            {% if page %}
+            {% if page != pagination.page %}
+            <a href="{{ url_for('index', page=page )}}">{{ page}}</a>
+            {% else %}
+            <strong>{{ page }}</strong>
+            {% endif %}
+            {% else %}
+            <span>...</span>
+            {% endif %}
+            {%- endfor %}
+        </div>
+    </body>
+</html>

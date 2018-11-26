@@ -1,0 +1,18 @@
+<html>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <head>
+        <title style="background-color:darkblue;color:cornsilk">todolist</title>
+    </head>
+    <body>
+        <p>QuickStart示例--Todolist应用程序</p>
+        <form action="{{ url_for('modify_data',ID=task.id) }}" method="POST">
+            <p>任务名称:<textarea name="task_name" cols="30" rows="6">{{ task.name }}</textarea></p>
+            <p><input type="radio" checked="checked" name="task_type" value="today" />今日待办</p>
+            <p><input type="radio"  name="task_type" value="next" />下一步行动</p>
+            <p><input type="radio"  name="task_type" value="tomorrow" />明日待办</p>
+            <p><input type="radio"  name="task_type" value="maybe" />将来/也许</p>
+            <p><input type="radio"  name="task_type" value="waite" />等待</p>
+            <p><input type="submit" name="add_new_task" value="添加任务" /></p>
+        </form>
+    </body>
+</html>
